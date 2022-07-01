@@ -9,6 +9,6 @@ declare namespace App {
 	// interface Stuff {}
 }
 
-interface ImportMetaEnv {
+declare interface ImportMetaEnv {
 	VITE_APP_TITLE: string
 }

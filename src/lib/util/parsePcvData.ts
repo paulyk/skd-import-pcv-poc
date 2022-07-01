@@ -1,4 +1,4 @@
-import type { PcvMetaData, RefData } from "src/types"
+import type { PcvMetaData, RefData, PCV } from "src/types"
 
 enum LineType {
     Series = 0,
@@ -20,23 +20,41 @@ export const parseRawPcvData = (text: string): PcvMetaData => {
     if (lines.length === 0) {
         return {
             series: [],
-            engines: [],
-            transmissions: [],
-            drives: [],
+            engine: [],
+            transmission: [],
+            drive: [],
             paint: [],
             trimPack: [],
             pcv: []
         }
     }
 
+    const series= parseRefData(lines[LineType.Series], code_name)
+    const engine = parseRefData(lines[LineType.Engine], code_code_name)
+    const transmission = parseRefData(lines[LineType.Transmission], code_code_name)
+    const drive = parseRefData(lines[LineType.Drive], code_code_name)
+    const paint= parseRefData(lines[LineType.Paint], code_name)
+    const trimPack= parseRefData(lines[LineType.TrimPack], code_name_name)
+    const pcvSet = parseRefData(lines[LineType.PCV], code_name) 
+
+    const pcvs: PCV[] =  pcvSet.map(v => v.name).map((code, i) =>({
+        pcvCode: code,
+        seriesCode: series[i].code,
+        encineCode: engine[i].code,
+        transmissionCode: transmission[i].code,
+        driveCode: drive[i].code,
+        paintCode: paint[i].code,
+        trimPackCode: trimPack[i].code,
+    }))
+
     return {
-        series: parseRefData(lines[LineType.Series], code_dash_name),
-        engines: parseRefData(lines[LineType.Engine], code_code_name),
-        transmissions: parseRefData(lines[LineType.Transmission], code_code_name),
-        drives: parseRefData(lines[LineType.Drive], code_code_name),
-        paint: parseRefData(lines[LineType.Paint], code_dash_name),
-        trimPack: parseRefData(lines[LineType.TrimPack], code_name_name),
-        pcv: parseRefData(lines[LineType.PCV], code_dash_name),
+        series: series.filter(distinctCode),
+        engine: engine.filter(distinctCode),
+        transmission: transmission.filter(distinctCode),
+        drive: drive.filter(distinctCode),
+        paint: paint.filter(distinctCode),
+        trimPack: trimPack.filter(distinctCode),
+        pcv: pcvs
     }
 }
 
@@ -47,10 +65,9 @@ function parseRefData(line: string, mapFn: ToRefDataFn): RefData[] {
 function distinctEntries(line: string): string[] {
     return line
         .split('\t')
-        .filter((v, i, _self) => _self.indexOf(v) === i)
 }
 
-function code_dash_name(v: string) {
+function code_name(v: string) {
     let [code, name] = v.split('-').map(v => v.trim())
     return { code, name }
 }
@@ -65,3 +82,5 @@ function code_name_name(v: string) {
     let name= [name_1, name_2 || ''].filter(v => v.length > 0 ).join('-')
     return { code, name }
 }
+
+function distinctCode(v: RefData, i: number, self: RefData[]) { return  self.findIndex(u => u.code === v.code) === i }
