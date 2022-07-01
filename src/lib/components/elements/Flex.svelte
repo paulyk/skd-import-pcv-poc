@@ -18,5 +18,7 @@
   div {
     display: flex;
     gap: 20px;
+    
   }
+
 </style>

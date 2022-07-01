@@ -5,7 +5,6 @@
 <script lang="ts">
   export let placeholder = "";
   export let label = "";
-  export let description = "";
   export let value: any;
   export let type: InputType = "text";
 
@@ -18,12 +17,11 @@
   const id = Math.floor(Math.random() * 100000).toString();
 </script>
 
-<div class="container">
+<div>
   {#if label}
     <label for={id}>{label}</label>
   {/if}
-  <input {type} {value} {placeholder} {id} on:input={handleInput} />
-  <p>{description}</p>
+  <input {type} {value} {placeholder} {id} on:input={handleInput} />  
 </div>
 
 <style>

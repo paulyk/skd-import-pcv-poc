@@ -1,4 +1,4 @@
-import type { PcvMetaData, RefData, PCV } from "src/types"
+import type { PcvMetaData, RefData, PCV, PcvModel } from "src/types"
 
 enum LineType {
     Series = 0,
@@ -14,8 +14,8 @@ interface ToRefDataFn {
     (input: string): RefData
 }
 
-export const parseRawPcvData = (text: string): PcvMetaData => {
-    const lines = text.split('\n').filter(t => t.length > 0)
+export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcvColumnData: string): PcvMetaData => {
+    const lines = pcvColumnData.split('\n').filter(t => t.length > 0)
 
     if (lines.length === 0) {
         return {
@@ -54,7 +54,7 @@ export const parseRawPcvData = (text: string): PcvMetaData => {
         drive: drive.filter(distinctCode),
         paint: paint.filter(distinctCode),
         trimPack: trimPack.filter(distinctCode),
-        pcv: pcvs
+        pcv: pcvs.map(x => ({ ...x, model: pcvModel, modelYear }))
     }
 }
 
