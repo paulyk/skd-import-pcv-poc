@@ -25,7 +25,7 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
             drive: [],
             paint: [],
             trimPack: [],
-            pcv: []
+            pcvs: []
         }
     }
 
@@ -39,13 +39,15 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
 
     const pcvs: PCV[] =  pcvSet.map(v => v.name).map((code, i) =>({
         pcvCode: code,
-        series: series[i].code,
-        engine: engine[i].code,
-        transmission: transmission[i].code,
-        drive: drive[i].code,
-        paint: paint[i].code,
-        trimPack: trimPack[i].code,
-        body: modelToBody(pcvModel)
+        series: series[i],
+        engine: engine[i],
+        transmission: transmission[i],
+        drive: drive[i],
+        paint: paint[i],
+        trimPack: trimPack[i],
+        model: pcvModel,
+        modelYear: modelYear,
+        body: bodyFromModel(pcvModel),
     }))
 
     return {
@@ -55,11 +57,11 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
         drive: drive.filter(distinctCode),
         paint: paint.filter(distinctCode),
         trimPack: trimPack.filter(distinctCode),
-        pcv: pcvs.map(x => ({ ...x, model: pcvModel, modelYear })),
+        pcvs: pcvs
     }
 }
 
-function modelToBody(model: PcvModel): string {
+function bodyFromModel(model: PcvModel): string {
     if (model === 'Evereset') {
         return "SUV"
     }
@@ -70,7 +72,8 @@ function modelToBody(model: PcvModel): string {
 }
 
 function parseRefData(line: string, mapFn: ToRefDataFn): CodeName[] {
-    return distinctEntries(line).map(mapFn)
+    const result =  distinctEntries(line).map(mapFn)
+    return result
 }
 
 function distinctEntries(line: string): string[] {

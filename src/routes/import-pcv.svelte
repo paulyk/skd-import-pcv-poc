@@ -14,7 +14,7 @@
 
 {#if pcvMeta}
   <div class="grid cols-3" >
-    {#each pcvMeta.pcv as pcv }
+    {#each pcvMeta.pcvs as pcv }
         <Pcv {pcv} />
     {/each}
 </div>
