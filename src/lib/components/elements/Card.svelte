@@ -4,7 +4,7 @@
 
 <style>
   div {
-    padding: 2rem;
+    padding: 1.5rem;
     background-color: var(--cardBg);
     box-shadow: var(--level-3);
     border-radius: var(--borderRadius);

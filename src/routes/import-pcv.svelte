@@ -4,7 +4,6 @@
   import RefData from "@components/elements/RefData.svelte";
   import ImportPcv from "@components/objects/ImportPCV.svelte";
   import type { PcvMetaData } from "src/types";
-import { xlink_attr } from "svelte/internal";
 
   let pcvMeta: PcvMetaData | null = null;
 </script>

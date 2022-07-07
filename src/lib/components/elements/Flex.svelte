@@ -7,7 +7,7 @@
   export let jusitfyContent: JustifyContent = "start";
   export let alignItems: AlignItems = "stretch";
 
-  let style = `justify-content: ${jusitfyContent}; align-items: ${alignItems}`;
+  let style = `justify-content: ${jusitfyContent}; align-items: ${alignItems}; gap: 1rem`;
 </script>
 
 <div class="flex" {style}>
@@ -16,9 +16,7 @@
 
 <style>
   div {
-    display: flex;
-    gap: 20px;
-    
+    display: flex;    
   }
 
 </style>

@@ -1,9 +1,9 @@
 <script lang="ts">
   import Card from "@components/elements/Card.svelte";
-  import type { RefData } from "src/types";
+  import type { CodeName } from "src/types";
 
   export let title = "";
-  export let refData: RefData[] = [];
+  export let refData: CodeName[] = [];
 </script>
 
 <Card>

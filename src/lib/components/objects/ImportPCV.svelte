@@ -13,9 +13,18 @@
   let modelYear = 2023;
   const models: PcvModel[] = ["Ranger", "Evereset"];
   let pcvModel: PcvModel = models[0];
+  let error = "";
 
   export let value: PcvMetaData | null = null;
-  $: value = text ? generatePcvMetadata(pcvModel, modelYear, text) : null;
+  $: {
+    error = ""
+    let lines = (text || "").split("\n");
+    if (text.length > 0 && lines.length < 7) {
+      error = `Invalid selection, ${lines.length} lines, should be 7`;
+    } else {
+      value = text ? generatePcvMetadata(pcvModel, modelYear, text) : null;
+    }
+  }
 </script>
 
 <Row>
@@ -27,3 +36,14 @@
 <Row>
   <Textarea bind:value={text} label="Paste data here" />
 </Row>
+<Row>
+  <div class="danger">
+    {error}
+  </div>
+</Row>
+
+<style>
+  .danger {
+    color: var(--danger);
+  }
+</style>

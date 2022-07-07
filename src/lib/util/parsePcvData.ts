@@ -1,4 +1,4 @@
-import type { PcvMetaData, RefData, PCV, PcvModel } from "src/types"
+import type { PcvMetaData, CodeName, PCV, PcvModel } from "src/types"
 
 enum LineType {
     Series = 0,
@@ -11,13 +11,13 @@ enum LineType {
 }
 
 interface ToRefDataFn {
-    (input: string): RefData
+    (input: string): CodeName
 }
 
 export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcvColumnData: string): PcvMetaData => {
-    const lines = pcvColumnData.split('\n').filter(t => t.length > 0)
-
-    if (lines.length === 0) {
+    const lines =  (pcvColumnData || "").split('\n').map(l => l.trim()).filter(t => t.length > 0)
+    debugger;
+    if (lines.length < 7) {
         return {
             series: [],
             engine: [],
@@ -45,6 +45,7 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
         driveCode: drive[i].code,
         paintCode: paint[i].code,
         trimPackCode: trimPack[i].code,
+        body: modelToBody(pcvModel)
     }))
 
     return {
@@ -54,11 +55,21 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
         drive: drive.filter(distinctCode),
         paint: paint.filter(distinctCode),
         trimPack: trimPack.filter(distinctCode),
-        pcv: pcvs.map(x => ({ ...x, model: pcvModel, modelYear }))
+        pcv: pcvs.map(x => ({ ...x, model: pcvModel, modelYear })),
     }
 }
 
-function parseRefData(line: string, mapFn: ToRefDataFn): RefData[] {
+function modelToBody(model: PcvModel): string {
+    if (model === 'Evereset') {
+        return "SUB"
+    }
+    if (model === 'Ranger') {
+        return 'Double Cab'
+    }
+    throw ""
+}
+
+function parseRefData(line: string, mapFn: ToRefDataFn): CodeName[] {
     return distinctEntries(line).map(mapFn)
 }
 
@@ -68,19 +79,22 @@ function distinctEntries(line: string): string[] {
 }
 
 function code_name(v: string) {
+    v = v.trim()
     let [code, name] = v.split('-').map(v => v.trim())
     return { code, name }
 }
 
 function code_code_name(v: string) {
+    v = v.trim()
     let [code_1, code_2, name] = v.split('-').map(v => v.trim())
     return { code: `${code_1}-${code_2}`, name }
 }
 
 function code_name_name(v: string) {
+    v = v.trim()
     let [code, name_1, name_2] = v.split('-').map(v => v.trim())
     let name= [name_1, name_2 || ''].filter(v => v.length > 0 ).join('-')
     return { code, name }
 }
 
-function distinctCode(v: RefData, i: number, self: RefData[]) { return  self.findIndex(u => u.code === v.code) === i }
+function distinctCode(v: CodeName, i: number, self: CodeName[]) { return  self.findIndex(u => u.code === v.code) === i }

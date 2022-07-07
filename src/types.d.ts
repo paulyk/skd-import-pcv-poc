@@ -1,5 +1,5 @@
 
-export interface RefData {
+export interface CodeName {
     code: string
     name: string
 }
@@ -16,15 +16,16 @@ export interface PCV {
     trimPackCode: string
 
     model?: PcvModel
+    body: String
     modelYear?: number
 }
 export interface PcvMetaData {
-    series: RefData[]
-    engine: RefData[]
-    transmission: RefData[],
-    drive: RefData[],
-    paint: RefData[],
-    trimPack: RefData[],
+    series: CodeName[]
+    engine: CodeName[]
+    transmission: CodeName[],
+    drive: CodeName[],
+    paint: CodeName[],
+    trimPack: CodeName[],
     pcv: PCV[]
 }
 

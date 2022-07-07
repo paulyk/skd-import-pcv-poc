@@ -41,5 +41,9 @@
       <div>Trim:</div>
       <div>{pcv.trimPackCode}</div>
     </Flex>
+    <Flex jusitfyContent="space-between">
+      <div>Body:</div>
+      <div>{pcv.body}</div>
+    </Flex>
   </div>
 </Card>
