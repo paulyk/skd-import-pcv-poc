@@ -4,7 +4,7 @@
   import Textarea from "@components/elements/Textarea.svelte";
   import { parseComponents } from "@lib/util/parseComponents";
   import type { CodeName } from "src/types";
-import InsertComponentSql from "./InsertComponentSql.svelte";
+  import ComponentsSQL from "./ComponentsSQL.svelte";
 
   let text = "";
   let components: CodeName[];
@@ -22,6 +22,6 @@ import InsertComponentSql from "./InsertComponentSql.svelte";
     <RefData title="Components" refData={components} />
   </Row>
   <Row>
-    <InsertComponentSql {components} />
+    <ComponentsSQL {components} />
   </Row>
 {/if}

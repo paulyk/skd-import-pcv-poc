@@ -14,5 +14,5 @@
   <div>Insert components SQL</div>
   <pre>
     {sql}
-</pre>
+  </pre>
 </Card>
