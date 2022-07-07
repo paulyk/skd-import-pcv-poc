@@ -8,13 +8,12 @@ export type PcvModel = 'Ranger' | 'Evereset'
 
 export interface PCV {
     pcvCode: string
-    seriesCode: string
-    encineCode: string
-    transmissionCode: string
-    driveCode: string
-    paintCode: string
-    trimPackCode: string
-
+    series: string
+    engine: string
+    transmission: string
+    drive: string
+    paint: string
+    trimPack: string
     model?: PcvModel
     body: String
     modelYear?: number

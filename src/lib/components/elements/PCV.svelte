@@ -19,27 +19,27 @@
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Series</div>
-      <div>{pcv.seriesCode}</div>
+      <div>{pcv.series}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Engine:</div>
-      <div>{pcv.encineCode}</div>
+      <div>{pcv.engine}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Transmission:</div>
-      <div>{pcv.transmissionCode}</div>
+      <div>{pcv.transmission}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Drive:</div>
-      <div>{pcv.driveCode}</div>
+      <div>{pcv.drive}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Paint:</div>
-      <div>{pcv.paintCode}</div>
+      <div>{pcv.paint}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Trim:</div>
-      <div>{pcv.trimPackCode}</div>
+      <div>{pcv.trimPack}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
       <div>Body:</div>

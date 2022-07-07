@@ -39,12 +39,12 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
 
     const pcvs: PCV[] =  pcvSet.map(v => v.name).map((code, i) =>({
         pcvCode: code,
-        seriesCode: series[i].code,
-        encineCode: engine[i].code,
-        transmissionCode: transmission[i].code,
-        driveCode: drive[i].code,
-        paintCode: paint[i].code,
-        trimPackCode: trimPack[i].code,
+        series: series[i].code,
+        engine: engine[i].code,
+        transmission: transmission[i].code,
+        drive: drive[i].code,
+        paint: paint[i].code,
+        trimPack: trimPack[i].code,
         body: modelToBody(pcvModel)
     }))
 
@@ -61,7 +61,7 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
 
 function modelToBody(model: PcvModel): string {
     if (model === 'Evereset') {
-        return "SUB"
+        return "SUV"
     }
     if (model === 'Ranger') {
         return 'Double Cab'
