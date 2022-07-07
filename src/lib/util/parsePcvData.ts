@@ -45,7 +45,8 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
         drive: drive[i],
         paint: paint[i],
         trimPack: trimPack[i],
-        model: pcvModel,
+        model: pcvModel.split(',')[0],
+        subModel: pcvModel.split(',')[1],
         modelYear: modelYear,
         body: bodyFromModel(pcvModel),
     }))
@@ -62,10 +63,10 @@ export const generatePcvMetadata =  (pcvModel: PcvModel, modelYear: number,  pcv
 }
 
 function bodyFromModel(model: PcvModel): string {
-    if (model === 'Evereset') {
+    if (model === 'Evereset,U704') {
         return "SUV"
     }
-    if (model === 'Ranger') {
+    if (model === "Ranger,P703") {
         return 'Double Cab'
     }
     throw ""

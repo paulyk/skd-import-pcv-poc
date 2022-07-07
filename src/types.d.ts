@@ -4,7 +4,7 @@ export interface CodeName {
     name: string
 }
 
-export type PcvModel = 'Ranger' | 'Evereset'
+export type PcvModel = 'Ranger,P703' | 'Evereset,U704'
 
 export interface PCV {
     pcvCode: string
@@ -15,6 +15,7 @@ export interface PCV {
     paint: CodeName
     trimPack: CodeName
     model?: string
+    subModel?: string
     body: String
     modelYear?: number
 }

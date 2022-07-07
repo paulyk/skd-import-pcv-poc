@@ -15,7 +15,7 @@
 </script>
 
 <Row>
-  <Textarea bind:value={text} />
+  <Textarea bind:value={text} label="Paste tab delimited component code, names" />
 </Row>
 {#if components.length > 0}
   <Row>

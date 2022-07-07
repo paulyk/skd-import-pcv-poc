@@ -14,6 +14,10 @@
       <div>{pcv.model}</div>
     </Flex>
     <Flex jusitfyContent="space-between">
+      <div>Sub model</div>
+      <div>{pcv.subModel}</div>
+    </Flex>
+    <Flex jusitfyContent="space-between">
       <div>Model Year</div>
       <div>{pcv.modelYear}</div>
     </Flex>

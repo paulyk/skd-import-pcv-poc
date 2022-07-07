@@ -11,7 +11,7 @@
 
   let text = "";
   let modelYear = 2023;
-  const models: PcvModel[] = ["Ranger", "Evereset"];
+  const models: PcvModel[] = ["Ranger,P703", 'Evereset,U704']
   let pcvModel: PcvModel = models[0];
   let error = "";
 
@@ -29,7 +29,7 @@
 
 <Row>
   <Flex alignItems="center">
-    <Selector options={models} label="Model" bind:value={pcvModel} />
+    <Selector options={models} label="Model, Sub model" bind:value={pcvModel} />
     <Field type="number" bind:value={modelYear} label="Model Year" />
   </Flex>
 </Row>
