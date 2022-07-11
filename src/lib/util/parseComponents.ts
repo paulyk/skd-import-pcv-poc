@@ -5,8 +5,7 @@ export const parseComponents = (text: string): CodeName[] => {
     if (lines.length === 0) {
         return []
     }
-    console.log('lines', lines)
-    const result: CodeName[] = lines.map(l => {
+    let result: CodeName[] = lines.map(l => {
         let [code, name] = l.split('\t')
         name = capitalize(name)
         return { code, name }
