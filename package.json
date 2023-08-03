@@ -20,7 +20,7 @@
 		"date-fns": "^2.28.0",
 		"eslint": "^8.18.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"svelte": "^3.48.0",
+		"svelte": "^3.49.0",
 		"svelte-check": "^2.8.0",
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.4.0",
